@@ -23,6 +23,16 @@ def convert_markdown_to_html(markdown_content):
     return markdown2.markdown(markdown_content, extras=["fenced-code-blocks", "tables"])
 
 
+def generate_project_links(project):
+    """Generate HTML for project links."""
+    links = []
+    if project.get("github"):
+        links.append(f'<a href="{project["github"]}" class="link">GitHub →</a>')
+    if project.get("demo"):
+        links.append(f'<a href="{project["demo"]}" class="link">Live Demo →</a>')
+    return "\n".join(links)
+
+
 def process_posts(directory, output_dir):
     """Process all markdown files in a directory."""
     posts = []
@@ -95,6 +105,7 @@ def main():
     # Copy static files
     shutil.copy("styles.css", "_site/")
     shutil.copy("index.html", "_site/")
+    shutil.copy("CNAME", "_site/")
 
     # Process blog posts and projects
     blog_posts = process_posts("blog/_posts", "_site/blog")
@@ -125,8 +136,7 @@ def main():
             f"    <p>{project['description']}</p>\n"
             f'    <div class="project-links">\n'
             f'        <a href="{project["url"]}" class="link">View Details →</a>\n'
-            f"        {f'<a href="{project["github"]}" class="link">GitHub →</a>' if project['github'] else ''}\n"
-            f"        {f'<a href="{project["demo"]}" class="link">Live Demo →</a>' if project['demo'] else ''}\n"
+            f"        {generate_project_links(project)}\n"
             f"    </div>\n"
             f"</article>"
             for project in projects[:6]  # Show only 6 latest projects
