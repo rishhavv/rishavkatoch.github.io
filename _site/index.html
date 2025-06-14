@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishav Katoch</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +19,7 @@
                 <li><a href="#research">Research</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#blog">Blog</a></li>
+                <li><a href="#books">Books</a></li>
             </ul>
         </nav>
     </header>
@@ -25,19 +27,51 @@
     <main>
         <section id="about" class="section">
             <h1>Rishav Katoch</h1>
-            <p class="subtitle">Computer Engineer & Writer</p>
+            <p class="subtitle">Computer Engineer & Deep Tech Enthusiast</p>
             <div class="content">
-                <p>Welcome to my corner of the internet. I'm a computer engineer passionate about building things that matter.</p>
-                <div class="social-links">
-                    <a href="https://github.com/rishhavv" target="_blank" class="social-link">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    <a href="https://linkedin.com/in/rishavkatoch" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://twitter.com/rishavkatoch" target="_blank" class="social-link">
-                        <i class="fab fa-twitter"></i> Twitter
-                    </a>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>Hi there! 👋 I'm a passionate developer from India, currently working on exciting projects in LLMs and deep tech.</p>
+                        <br />
+                        <br />
+                        <h3>🚀 What I'm Up To</h3>
+                        <ul>
+                            <li>🔭 Working on exciting projects on LLMs</li>
+                            <li>🌱 Learning new technologies and deep tech</li>
+                            <li>👯 Open to collaborating on interesting projects</li>
+                            <li>💬 Ask me about LLMs and why deep tech is real</li>
+                        </ul>
+                        <br /><br />
+                        <h3>🛠️ Technologies & Tools</h3>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Go</span>
+                            <span class="tech-badge">LangChain</span>
+                            <span class="tech-badge">LangGraph</span>
+                            <span class="tech-badge">Redis</span>
+                            <span class="tech-badge">Kubernetes</span>
+                            <span class="tech-badge">Kafka</span>
+                            <span class="tech-badge">Numaflow</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/rishhavv" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://linkedin.com/in/rishhavv" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://twitter.com/rishhavv" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="mailto:rishav.katoch17300@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -64,20 +98,40 @@
         </section>
 
         <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="content">
-                <div class="project-grid">
-                    <article class="project-card">
-    <h3><a href="/_site/projects/2024-03-20-distributed-task-scheduler.html">Distributed Task Scheduler</a></h3>
-    <p>A Golang-based distributed task scheduling framework with support for multiple scheduling algorithms</p>
-    <div class="project-links">
-        <a href="/_site/projects/2024-03-20-distributed-task-scheduler.html" class="link">View Details →</a>
-        <a href="https://github.com/rishhavv/distributed-task-scheduler" class="link">GitHub →</a>
-<a href="https://zenodo.org/records/14633463" class="link">Live Demo →</a>
-    </div>
-</article>
+            <h2>Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3><a href="restore-ai-bot.html" class="project-title-link">Restore AI Bot</a></h3>
+                    <p>A data-driven Telegram bot that revolutionizes forest restoration efforts in India by providing AI-powered plantation viability predictions. Currently focused on Himachal Pradesh, it helps optimize resources and reduce waste in conservation efforts.</p>
+                    <div class="project-links">
+                        <a href="https://t.me/seedsagebot" class="link" target="_blank">
+                            <i class="fab fa-telegram"></i> Try the Bot
+                        </a>
+                        <a href="restore-ai-bot.html" class="link">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Distributed Task Scheduler</h3>
+                    <p>A high-performance distributed task scheduling system with advanced algorithms and fault tolerance.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/rishhavv/distributed-task-scheduler" class="link" target="_blank">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>EduCloud</h3>
+                    <p>A cloud-based educational platform for seamless learning and collaboration.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/JIIT-PUSH/EduCloud" class="link" target="_blank">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
+            <a href="https://github.com/rishhavv?tab=repositories" class="link">View all projects →</a>
         </section>
 
         <section id="blog" class="section">
@@ -91,6 +145,22 @@
     <a href="/_site/blog/2024-03-20-welcome.html" class="link">Read More →</a>
 </article>
                 </div>
+            </div>
+        </section>
+
+        <section id="books" class="section">
+            <h2>Books I'm Reading</h2>
+            <div class="book-grid">
+                <div class="book-card">
+                    <h3>Chip War</h3>
+                    <p class="author">by Chris Miller</p>
+                    <p>The high-stakes battle for the world's most critical technology.</p>
+                    <a href="https://www.goodreads.com/book/show/60376073-chip-war" class="link" target="_blank">
+                        <i class="fas fa-book"></i> View on Goodreads
+                    </a>
+                </div>
+            <div class="book-recommendation">
+                <p>Have a book recommendation? Send me an email at <a href="mailto:contact@rishavkatoch.me" class="link">contact@rishavkatoch.me</a></p>
             </div>
         </section>
     </main>
