@@ -105,7 +105,7 @@ def main():
     # Copy static files
     shutil.copy("styles.css", "_site/")
     shutil.copy("index.html", "_site/")
-    shutil.copy("restore-ai-bot.html", "_site/")
+    shutil.copy("where-to-plant.html", "_site/")
     shutil.copy("CNAME", "_site/")
 
     # Process blog posts and projects
