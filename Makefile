@@ -21,7 +21,7 @@ clean:
 	@echo "Clean complete"
 
 # Create a new blog post
-new-post:
+new-posts:
 	@read -p "Enter post title (will be converted to slug): " title; \
 	slug=$$(echo "$$title" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'); \
 	date=$$(date +%Y-%m-%d); \
