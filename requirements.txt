@@ -1,2 +1,0 @@
-markdown2==2.4.10
-pyyaml==6.0.1 
