@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: "WhereToPlant",
+    description: "AI-powered Telegram bot transforming forest restoration through data-driven site selection. Analyzes 30+ environmental parameters to predict plantation success with ~80% accuracy. Trusted by the Himachal Pradesh Forest Department, we've analyzed 795,000+ land parcels. Part of RootIQ Labs.",
+    links: [
+      { label: "Try the Bot", href: "https://t.me/wheretoplantbot" },
+      { label: "RootIQ Labs", href: "https://rootiq.org" },
+    ],
+    tags: ["AI", "Machine Learning", "Conservation", "RootIQ"],
+    featured: true
+  },
+  {
+    title: "Distributed Task Scheduler",
+    description: "A high-performance distributed task scheduling system built in Go. Features advanced scheduling algorithms (Round-Robin, FCFS, Least-Loaded) with fault tolerance and horizontal scalability.",
+    links: [
+      { label: "GitHub", href: "https://github.com/rishhavv/distributed-task-scheduler" },
+      { label: "Research Paper", href: "https://zenodo.org/records/14633463" }
+    ],
+    tags: ["Go", "Distributed Systems", "Research"],
+    featured: true
+  },
+  {
+    title: "EduCloud",
+    description: "A cloud-based educational platform for seamless learning and collaboration. Enables educators and students to connect in a modern, intuitive environment.",
+    links: [
+      { label: "GitHub", href: "https://github.com/JIIT-PUSH/EduCloud" }
+    ],
+    tags: ["Education", "Cloud", "Collaboration"],
+    featured: false
+  }
+];
+---
+
+<BaseLayout 
+  title="Projects | Rishav Katoch" 
+  description="Projects I've built and contributed to."
+>
+  <div class="container">
+    <header class="page-header fade-in">
+      <h1 class="page-title">Projects</h1>
+      <p class="page-description">
+        Things I've built, experiments I've run, and problems I've tried to solve.
+      </p>
+    </header>
+    
+    <div class="projects-grid fade-in stagger-2">
+      {projects.map((project, index) => (
+        <article class={`project-card ${project.featured ? 'featured' : ''}`}>
+          {project.featured && <span class="featured-badge">Featured</span>}
+          <h2 class="project-title">{project.title}</h2>
+          <p class="project-description">{project.description}</p>
+          
+          <div class="project-tags">
+            {project.tags.map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+          
+          <div class="project-links">
+            {project.links.map(link => (
+              <a href={link.href} target="_blank" rel="noopener" class="project-link">
+                {link.label}
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <div class="cta-section fade-in stagger-3">
+      <p>
+        Want to see more? Check out my 
+        <a href="https://github.com/rishhavv" target="_blank" rel="noopener">GitHub profile</a> 
+        for all my open source work.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: var(--space-3xl);
+  }
+  
+  .page-title {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .page-description {
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    margin: 0;
+  }
+  
+  .projects-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  
+  .project-card {
+    position: relative;
+    padding: var(--space-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+  
+  .project-card:hover {
+    border-color: var(--color-border-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+  
+  [data-theme="dark"] .project-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .project-card.featured {
+    border-color: var(--color-accent);
+    border-width: 2px;
+  }
+  
+  .featured-badge {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    background-color: rgba(196, 93, 62, 0.1);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+  
+  [data-theme="dark"] .featured-badge {
+    background-color: rgba(224, 122, 95, 0.15);
+  }
+  
+  .project-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin: 0 0 var(--space-md) 0;
+    padding-right: 80px;
+  }
+  
+  .project-description {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    line-height: 1.7;
+  }
+  
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    background-color: var(--color-bg-alt);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+  }
+  
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+  }
+  
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+  }
+  
+  .project-link:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  
+  .cta-section {
+    margin-top: var(--space-3xl);
+    padding: var(--space-xl);
+    text-align: center;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+  }
+  
+  .cta-section p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  
+  .cta-section a {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+  
+  @media (max-width: 640px) {
+    .project-title {
+      padding-right: 0;
+    }
+    
+    .featured-badge {
+      position: static;
+      display: inline-block;
+      margin-bottom: var(--space-md);
+    }
+  }
+</style>
+
