@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, date, tags } = post.data;
+const { title, description, date, tags, series, seriesOrder } = post.data;
 
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -32,14 +32,21 @@ const readingTime = Math.ceil(words / 200);
         Back to blog
       </a>
       
+      {series && (
+        <div class="series-badge">
+          <span class="series-icon">📚</span>
+          {series} {seriesOrder && `· Part ${seriesOrder}`}
+        </div>
+      )}
+
       <h1 class="post-title">{title}</h1>
-      
+
       <div class="post-meta">
         <time datetime={date.toISOString()}>{formattedDate}</time>
         <span class="separator">·</span>
         <span>{readingTime} min read</span>
       </div>
-      
+
       {tags && tags.length > 0 && (
         <div class="post-tags">
           {tags.map((tag: string) => (
@@ -88,7 +95,30 @@ const readingTime = Math.ceil(words / 200);
   .back-link:hover {
     color: var(--color-accent);
   }
-  
+
+  .series-badge {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    background-color: rgba(196, 93, 62, 0.1);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    border: 1px solid rgba(196, 93, 62, 0.2);
+  }
+
+  [data-theme="dark"] .series-badge {
+    background-color: rgba(224, 122, 95, 0.15);
+    border-color: rgba(224, 122, 95, 0.3);
+  }
+
+  .series-icon {
+    font-size: var(--text-base);
+  }
+
   .post-title {
     font-size: var(--text-3xl);
     font-weight: 700;

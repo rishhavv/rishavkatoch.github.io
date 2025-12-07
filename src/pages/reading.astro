@@ -1,0 +1,266 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allBooks = await getCollection('reading');
+const books = allBooks.sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf());
+
+// Group books by status
+const booksByStatus = {
+  reading: books.filter(book => book.data.status === 'reading'),
+  completed: books.filter(book => book.data.status === 'completed'),
+  paused: books.filter(book => book.data.status === 'paused'),
+};
+---
+
+<BaseLayout
+  title="Reading | Rishav Katoch"
+  description="Books I'm reading on philosophy, science, technology, and more."
+>
+  <div class="container">
+    <header class="page-header fade-in">
+      <h1 class="page-title">Reading</h1>
+      <p class="page-description">
+        Books I'm reading on philosophy, science, technology, and the intersection of ideas.
+      </p>
+    </header>
+
+    {books.length > 0 ? (
+      <div class="reading-container fade-in stagger-2">
+        {booksByStatus.reading.length > 0 && (
+          <section class="status-section">
+            <h2 class="status-heading">Currently Reading</h2>
+            <div class="books-grid">
+              {booksByStatus.reading.map((book) => (
+                <article class="book-card">
+                  <div class="book-header">
+                    <h3 class="book-title">{book.data.title}</h3>
+                    <p class="book-author">by {book.data.author}</p>
+                  </div>
+                  <p class="book-description">{book.data.description}</p>
+                  {book.data.tags && (
+                    <div class="book-tags">
+                      {book.data.tags.map(tag => (
+                        <span class="book-tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                  <a href={`/reading/${book.slug}`} class="book-link">
+                    Read notes →
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {booksByStatus.completed.length > 0 && (
+          <section class="status-section">
+            <h2 class="status-heading">Completed</h2>
+            <div class="books-grid">
+              {booksByStatus.completed.map((book) => (
+                <article class="book-card">
+                  <div class="book-header">
+                    <h3 class="book-title">{book.data.title}</h3>
+                    <p class="book-author">by {book.data.author}</p>
+                    {book.data.rating && (
+                      <div class="book-rating">
+                        {'★'.repeat(book.data.rating)}{'☆'.repeat(5 - book.data.rating)}
+                      </div>
+                    )}
+                  </div>
+                  <p class="book-description">{book.data.description}</p>
+                  {book.data.tags && (
+                    <div class="book-tags">
+                      {book.data.tags.map(tag => (
+                        <span class="book-tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                  <a href={`/reading/${book.slug}`} class="book-link">
+                    Read notes →
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {booksByStatus.paused.length > 0 && (
+          <section class="status-section">
+            <h2 class="status-heading">Paused</h2>
+            <div class="books-grid">
+              {booksByStatus.paused.map((book) => (
+                <article class="book-card">
+                  <div class="book-header">
+                    <h3 class="book-title">{book.data.title}</h3>
+                    <p class="book-author">by {book.data.author}</p>
+                  </div>
+                  <p class="book-description">{book.data.description}</p>
+                  {book.data.tags && (
+                    <div class="book-tags">
+                      {book.data.tags.map(tag => (
+                        <span class="book-tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                  <a href={`/reading/${book.slug}`} class="book-link">
+                    Read notes →
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    ) : (
+      <div class="empty-state fade-in stagger-2">
+        <p>No books logged yet. Check back soon!</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .page-title {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-description {
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    margin: 0;
+  }
+
+  .reading-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+  }
+
+  .status-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .status-heading {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin: 0 0 var(--space-xl) 0;
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-text);
+    display: inline-block;
+  }
+
+  .books-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .book-card {
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-card:hover {
+    border-color: var(--color-border-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  [data-theme="dark"] .book-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .book-header {
+    margin-bottom: var(--space-md);
+  }
+
+  .book-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin: 0 0 var(--space-xs) 0;
+    color: var(--color-text);
+  }
+
+  .book-author {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-xs) 0;
+  }
+
+  .book-rating {
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    margin-top: var(--space-xs);
+  }
+
+  .book-description {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .book-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .book-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    background-color: rgba(196, 93, 62, 0.1);
+    padding: 2px var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  [data-theme="dark"] .book-tag {
+    background-color: rgba(224, 122, 95, 0.15);
+  }
+
+  .book-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    align-self: flex-start;
+  }
+
+  .book-link:hover {
+    color: var(--color-accent);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-3xl) 0;
+  }
+
+  .empty-state p {
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .books-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
