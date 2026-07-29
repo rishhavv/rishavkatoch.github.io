@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rishavkatoch.me/sitemap.xml
+Sitemap: https://rishavkatoch.com/sitemap.xml
 

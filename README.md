@@ -1,4 +1,4 @@
-# Personal Website - rishavkatoch.me
+# Personal Website - rishavkatoch.com
 
 A clean, monochrome personal website built with HTML and CSS, designed to showcase your projects and blog posts.
 
