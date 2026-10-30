@@ -1,8 +1,8 @@
 // Single source of truth for the app legal and support pages.
 // Every page under src/pages/apps/[slug]/ reads from here.
 
-// Vertex is a working name. Replace it with the final app name; the URL slug follows automatically.
-export const name = "Vertex";
+// The app name. The URL slug follows automatically.
+export const name = "Strandmark";
 
 export const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
