@@ -1,0 +1,94 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import * as app from "../../../data/app";
+
+export function getStaticPaths() {
+  return [{ params: { slug: app.slug } }];
+}
+
+---
+
+<AppLayout
+  title={`Privacy Policy | ${app.name}`}
+  description={`Privacy policy for ${app.name}. The app collects no data: everything stays on your iPhone.`}
+>
+  <h1>Privacy Policy</h1>
+  <p class="meta">{app.name} &middot; Last updated {app.lastUpdated}</p>
+
+  <p>
+    {app.name} is built to be private. This policy explains, in plain language, what the app does and does not do with
+    your information. In short: the developer collects nothing.
+  </p>
+
+  <h2>What we collect</h2>
+  <p>
+    Nothing. {app.name} has no account, no server, no analytics, no advertising, no tracking and no third-party SDKs.
+    The developer, {app.developer}, never receives your data and has no way to access it. This is consistent with the
+    App Store privacy label "Data Not Collected".
+  </p>
+
+  <h2>What stays on your device</h2>
+  <p>
+    Everything you enter or capture in the app is stored only on your iPhone. This includes your regimen and reminder
+    settings, progress photos, side-effect journal entries and adherence history.
+  </p>
+  <ul>
+    <li>Photos taken in the app are never added to your Photos library and are never uploaded.</li>
+    <li>Your health data is not stored in iCloud, and photos are excluded from iCloud backup.</li>
+  </ul>
+
+  <h2>Permissions and why</h2>
+  <ul>
+    <li><strong>Camera:</strong> to take your progress photos.</li>
+    <li><strong>Motion:</strong> the motion sensors help guide the angle of your photos.</li>
+    <li><strong>Notifications:</strong> to deliver your reminders as local notifications on your phone. Reminders are discreet by default.</li>
+    <li><strong>Face ID:</strong> if you turn on the optional app lock, Face ID is used to unlock the app.</li>
+  </ul>
+  <p>You can change any of these in iOS Settings at any time. Camera access is needed to take photos in the app.</p>
+
+  <h2>Purchases</h2>
+  <p>
+    All purchases are processed by Apple. The developer never sees your payment details. Pro is available as an
+    auto-renewable subscription or a one-time lifetime purchase. Apple's own privacy practices apply to purchases and
+    to your Apple ID.
+  </p>
+
+  <h2>Exports and sharing</h2>
+  <p>
+    Data leaves your device only when you explicitly share an export, such as a comparison image or a timelapse video,
+    through the iOS share sheet. What happens to an export after you share it depends on the app or person you send it
+    to, and is outside the developer's control.
+  </p>
+
+  <h2>Children</h2>
+  <p>
+    {app.name} is not directed at children under 13. Please follow the age rating shown on the App Store. Because the
+    developer collects no data, no information is collected from anyone, including children.
+  </p>
+
+  <h2>Data deletion</h2>
+  <p>
+    Because your data lives only on your iPhone, you are in control of it. Deleting the app deletes its data. There is
+    nothing to delete on a server, because there is no server.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>
+    Privacy laws such as India's Digital Personal Data Protection Act 2023, the EU and UK GDPR and the California
+    Consumer Privacy Act give people rights over their personal data, including rights to access, correct, delete and
+    port it. The developer holds no personal data about you, so there is nothing to disclose, correct, delete or sell.
+    You can inspect and delete everything yourself on your device. If you have a question about your privacy, contact
+    us at <a href={`mailto:${app.supportEmail}`}>{app.supportEmail}</a>.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    If this policy changes, the updated version will be posted on this page with a new "last updated" date.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    {app.developer}, an individual developer based in India.<br />
+    <a href={`mailto:${app.supportEmail}`}>{app.supportEmail}</a>
+  </p>
+</AppLayout>

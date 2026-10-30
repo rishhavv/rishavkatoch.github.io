@@ -1,0 +1,40 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import * as app from "../../../data/app";
+
+export function getStaticPaths() {
+  return [{ params: { slug: app.slug } }];
+}
+
+const base = `/apps/${app.slug}`;
+---
+
+<AppLayout
+  title={`${app.name} | Private hair-loss regimen tracker for iPhone`}
+  description={`${app.name} is a private, on-device iPhone app for tracking a hair-loss regimen. Nothing leaves your phone.`}
+>
+  <h1>{app.name}</h1>
+  <p class="lede">
+    {app.name} is a private, on-device iPhone app for people managing a hair-loss regimen. It keeps dose reminders,
+    guided progress photos, a side-effect journal and an adherence calendar in one place.
+  </p>
+
+  <div class="callout">
+    <p>
+      <strong>Privacy promise.</strong> Everything stays on your iPhone. There is no account, no server, no analytics,
+      no ads and no tracking. Your photos are never uploaded.
+    </p>
+  </div>
+
+  {app.appStoreUrl && (
+    <a class="badge" href={app.appStoreUrl}>Download on the App Store</a>
+  )}
+
+  <h2>Learn more</h2>
+  <ul class="cards">
+    <li><a href={`${base}/privacy`}>Privacy Policy</a></li>
+    <li><a href={`${base}/terms`}>Terms of Use</a></li>
+    <li><a href={`${base}/support`}>Support and FAQ</a></li>
+    <li><a href={`${base}/disclaimer`}>Medical disclaimer</a></li>
+  </ul>
+</AppLayout>

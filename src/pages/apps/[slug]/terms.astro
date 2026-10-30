@@ -1,0 +1,74 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import * as app from "../../../data/app";
+
+export function getStaticPaths() {
+  return [{ params: { slug: app.slug } }];
+}
+
+---
+
+<AppLayout
+  title={`Terms of Use | ${app.name}`}
+  description={`Terms of use for ${app.name}: Apple's Standard EULA plus short supplemental terms.`}
+>
+  <h1>Terms of Use</h1>
+  <p class="meta">{app.name} &middot; Last updated {app.lastUpdated}</p>
+
+  <h2>Apple's Standard EULA</h2>
+  <p>
+    Your use of {app.name} is governed by Apple's Standard End User License Agreement (EULA):
+    <a href={app.eulaUrl}>{app.eulaUrl}</a>. The supplemental terms below apply in addition to it. If the two
+    conflict, the Apple EULA prevails.
+  </p>
+
+  <h2>Subscriptions and auto-renewal</h2>
+  <ul>
+    <li>{app.name} Pro is available as an auto-renewable subscription, billed monthly or yearly. Prices are shown in the app and the App Store.</li>
+    <li>The yearly plan includes a 7-day free trial for eligible new subscribers.</li>
+    <li>Payment is charged to your Apple ID account at confirmation of purchase.</li>
+    <li>Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Your account is charged for renewal within 24 hours before the end of the current period.</li>
+    <li>You can manage or cancel a subscription in iOS Settings &rarr; Apple ID &rarr; Subscriptions.</li>
+    <li>Apple processes all purchases. The developer never sees your payment details.</li>
+    <li>You can restore previous purchases from within the app.</li>
+  </ul>
+
+  <h2>Lifetime purchase</h2>
+  <p>
+    {app.name} Pro is also available as a one-time lifetime purchase, with no renewal. It is tied to your Apple ID and
+    can be restored from within the app.
+  </p>
+
+  <h2>No medical advice</h2>
+  <p>
+    {app.name} is a personal tracking tool. It is not a medical device. It does not diagnose or treat any condition,
+    recommend doses or offer medical advice. Please read the <a href={`/apps/${app.slug}/disclaimer`}>medical
+    disclaimer</a>.
+  </p>
+
+  <h2>Limitation of liability</h2>
+  <p>
+    To the fullest extent permitted by law, the app is provided "as is" and the developer is not liable for any
+    indirect, incidental or consequential loss arising from your use of the app, including any decision you make about
+    your health or treatment. Nothing in these terms limits liability that cannot be limited by law, or your statutory
+    consumer rights.
+  </p>
+
+  <h2>Governing law</h2>
+  <p>
+    These supplemental terms are governed by the laws of India. Where your local consumer law gives you rights that
+    cannot be waived, those rights are unaffected.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    These terms may be updated from time to time. The current version is always on this page, with its last updated
+    date.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    {app.developer}, an individual developer based in India.<br />
+    <a href={`mailto:${app.supportEmail}`}>{app.supportEmail}</a>
+  </p>
+</AppLayout>

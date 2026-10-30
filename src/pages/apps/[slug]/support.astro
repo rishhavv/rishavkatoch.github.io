@@ -1,0 +1,59 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import * as app from "../../../data/app";
+
+export function getStaticPaths() {
+  return [{ params: { slug: app.slug } }];
+}
+
+---
+
+<AppLayout
+  title={`Support | ${app.name}`}
+  description={`Get help with ${app.name}: contact the developer and read answers to common questions.`}
+>
+  <h1>Support</h1>
+  <p class="meta">{app.name} &middot; Last updated {app.lastUpdated}</p>
+
+  <p class="lede">
+    Questions, problems or feedback? Email <a href={`mailto:${app.supportEmail}`}>{app.supportEmail}</a>. It is
+    read by {app.developer}, the developer.
+  </p>
+  <p>
+    The developer cannot see anything stored in the app, so please describe the problem in your own words and include
+    your iPhone model and iOS version.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+
+  <details>
+    <summary>How do I restore my purchases?</summary>
+    <p>Open {app.name} and use Restore Purchases in the app. You need to be signed in to the same Apple ID that made the purchase.</p>
+  </details>
+  <details>
+    <summary>How do I cancel my subscription?</summary>
+    <p>Subscriptions are managed by Apple. Go to iOS Settings &rarr; Apple ID &rarr; Subscriptions, choose {app.name}, and cancel. To avoid being charged for the next period, cancel at least 24 hours before the current period ends.</p>
+  </details>
+  <details>
+    <summary>I got a new phone. What happens to my data?</summary>
+    <p>Your data is stored only on your iPhone, and there is no account, so it does not move to a new phone automatically.</p>
+  </details>
+  <details>
+    <summary>How do I delete my data?</summary>
+    <p>Delete the app from your iPhone. Everything it stored is deleted with it. The developer holds no copy.</p>
+  </details>
+  <details>
+    <summary>My reminders are not appearing.</summary>
+    <p>Check that notifications are allowed for {app.name} in iOS Settings &rarr; Notifications. Also check whether a Focus mode is active, since a Focus can silence or hide notifications.</p>
+  </details>
+  <details>
+    <summary>The camera is not working in the app.</summary>
+    <p>Go to iOS Settings &rarr; {app.name} and make sure Camera is turned on. Progress photos need camera access, and the motion sensors help guide the angle.</p>
+  </details>
+
+  <h2>Medical questions</h2>
+  <p>
+    {app.name} cannot answer medical questions. See the
+    <a href={`/apps/${app.slug}/disclaimer`}>medical disclaimer</a>, and speak to a qualified healthcare professional.
+  </p>
+</AppLayout>

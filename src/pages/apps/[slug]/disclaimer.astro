@@ -1,0 +1,48 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import * as app from "../../../data/app";
+
+export function getStaticPaths() {
+  return [{ params: { slug: app.slug } }];
+}
+
+---
+
+<AppLayout
+  title={`Medical Disclaimer | ${app.name}`}
+  description={`${app.name} is a personal tracking tool, not a medical device, and does not provide medical advice.`}
+>
+  <h1>Medical Disclaimer</h1>
+  <p class="meta">{app.name} &middot; Last updated {app.lastUpdated}</p>
+
+  <div class="callout">
+    <p><strong>{app.name} does not provide medical advice.</strong> Talk to a qualified healthcare professional about your health and your treatment.</p>
+  </div>
+
+  <h2>A tracking tool, not a medical device</h2>
+  <p>
+    {app.name} is a personal tracking tool. It is not a medical device. It does not diagnose or treat any condition,
+    and it does not recommend or adjust doses. Any dose or schedule you enter is your own, as directed by your
+    healthcare professional.
+  </p>
+
+  <h2>Side-effect journal</h2>
+  <p>
+    The side-effect journal may prompt you to talk to your prescriber. That prompt is a reminder, not medical advice.
+  </p>
+
+  <h2>Results vary</h2>
+  <p>
+    Everyone is different, and results vary. Progress photos and comparisons are for your personal use only. They are
+    not a measure of effectiveness or a substitute for professional assessment.
+  </p>
+
+  <h2>Emergencies</h2>
+  <p>
+    In an emergency, or if you think you are having a serious reaction, contact your local emergency services
+    immediately. Do not rely on this app.
+  </p>
+
+  <h2>Contact</h2>
+  <p><a href={`mailto:${app.supportEmail}`}>{app.supportEmail}</a></p>
+</AppLayout>

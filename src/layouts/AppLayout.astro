@@ -1,0 +1,126 @@
+---
+// Self-contained layout for the app legal/support pages.
+// Deliberately independent of BaseLayout, Header, Footer and global.css so these
+// pages do not depend on the rest of the site's styling. No external scripts or fonts.
+import { name, slug, developer, supportEmail } from '../data/app';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const base = `/apps/${slug}`;
+const links = [
+  { href: `${base}/privacy`, label: 'Privacy' },
+  { href: `${base}/terms`, label: 'Terms' },
+  { href: `${base}/support`, label: 'Support' },
+  { href: `${base}/disclaimer`, label: 'Medical disclaimer' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href={`${base}/`}>{name}</a>
+      <a class="back" href="/">by {developer}</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <slot />
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <nav aria-label="App pages">
+        <ul>
+          {links.map(l => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
+      <p>
+        {name} is made by {developer}, an individual developer based in India.
+        Contact: <a href={`mailto:${supportEmail}`}>{supportEmail}</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #f2ece0;
+    --surface: #f8f4eb;
+    --text: #1a2e1f;
+    --muted: #4a5d4e;
+    --border: #d0c4aa;
+    --gold: #8b6914;
+    --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0a1a12;
+      --surface: #132e1f;
+      --text: #f0e6d0;
+      --muted: #c4b89e;
+      --border: #1e3a28;
+      --gold: #d4a843;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.25rem; }
+  .top { border-bottom: 1px solid var(--border); }
+  .top-inner { display: flex; justify-content: space-between; align-items: baseline; padding-top: 1.1rem; padding-bottom: 1.1rem; }
+  .brand { font-size: 1.35rem; font-weight: 700; letter-spacing: 0.02em; color: var(--text); text-decoration: none; }
+  .back { font-size: 0.95rem; color: var(--muted); text-decoration: none; }
+  .back:hover { color: var(--gold); }
+  main.wrap { padding-top: 2.5rem; padding-bottom: 3.5rem; min-height: 60vh; }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 0.4rem; }
+  h2 { font-size: 1.35rem; line-height: 1.3; margin: 2.2rem 0 0.5rem; padding-top: 0.4rem; border-top: 1px solid var(--border); }
+  p, ul, ol { margin: 0 0 1rem; }
+  ul, ol { padding-left: 1.4rem; }
+  li { margin-bottom: 0.35rem; }
+  a { color: var(--text); text-decoration-color: var(--gold); text-underline-offset: 3px; }
+  a:hover { color: var(--gold); }
+  .meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.8rem; }
+  .lede { font-size: 1.25rem; }
+  .callout { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 0.9rem 1.1rem; margin: 1.5rem 0; }
+  .callout p:last-child { margin-bottom: 0; }
+  .cards { list-style: none; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .cards a { display: block; background: var(--surface); border: 1px solid var(--border); padding: 0.8rem 1rem; text-decoration: none; }
+  .cards a:hover { border-color: var(--gold); }
+  .badge { display: inline-block; margin: 0.5rem 0 1rem; }
+  details { border-top: 1px solid var(--border); padding: 0.7rem 0; }
+  details:last-of-type { border-bottom: 1px solid var(--border); }
+  summary { cursor: pointer; font-weight: 700; }
+  details p { margin: 0.6rem 0 0; }
+  .foot { border-top: 1px solid var(--border); padding: 1.5rem 0 2.5rem; font-size: 0.95rem; color: var(--muted); }
+  .foot ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-bottom: 0.8rem; }
+  .foot a { color: var(--muted); }
+  .foot a:hover { color: var(--gold); }
+  @media (max-width: 480px) { h1 { font-size: 1.75rem; } body { font-size: 1.05rem; } }
+</style>
