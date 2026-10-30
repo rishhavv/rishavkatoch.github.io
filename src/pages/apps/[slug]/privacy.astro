@@ -34,7 +34,8 @@ export function getStaticPaths() {
   </p>
   <ul>
     <li>Photos taken in the app are never added to your Photos library and are never uploaded.</li>
-    <li>Your health data is not stored in iCloud, and photos are excluded from iCloud backup.</li>
+    <li>The app does not use iCloud or any cloud service to store or sync your data.</li>
+    <li>If you back up your iPhone with iCloud Backup or to a computer, Apple includes the app's regimen, reminder and journal data in that device backup, as it does for any app. Progress photos are excluded from device backups.</li>
   </ul>
 
   <h2>Permissions and why</h2>
@@ -42,7 +43,6 @@ export function getStaticPaths() {
     <li><strong>Camera:</strong> to take your progress photos.</li>
     <li><strong>Motion:</strong> the motion sensors help guide the angle of your photos.</li>
     <li><strong>Notifications:</strong> to deliver your reminders as local notifications on your phone. Reminders are discreet by default.</li>
-    <li><strong>Face ID:</strong> if you turn on the optional app lock, Face ID is used to unlock the app.</li>
   </ul>
   <p>You can change any of these in iOS Settings at any time. Camera access is needed to take photos in the app.</p>
 
